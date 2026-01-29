@@ -1,0 +1,559 @@
+/* Command Palette Theme */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    line-height: 2;
+}
+
+/* Button Flash Animation */
+@keyframes buttonFlash {
+    0% {
+        background-color: #000000;
+        color: #ffffff;
+    }
+    50% {
+        background-color: #3fb950;
+        color: #000000;
+    }
+    100% {
+        background-color: #000000;
+        color: #ffffff;
+    }
+}
+
+@keyframes buttonFlashRed {
+    0% {
+        background-color: #000000;
+        color: #ffffff;
+    }
+    50% {
+        background-color: #f85149;
+        color: #000000;
+    }
+    100% {
+        background-color: #000000;
+        color: #ffffff;
+    }
+}
+
+.btn.flash {
+    animation: buttonFlash 0.3s ease-in-out;
+}
+
+.btn-back.flash {
+    animation: buttonFlashRed 0.3s ease-in-out;
+}
+
+.edit-file-btn.flash {
+    animation: buttonFlash 0.3s ease-in-out;
+}
+
+/* Header & Navigation */
+.header {
+    background-color: #000000;
+    border-bottom: 1px solid #ffffff;
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 8px;
+    transition: color 0.2s ease;
+    border: 1px solid #ffffff;
+    padding: 4px 8px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.nav-links a:hover {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Main Content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 16px;
+}
+
+.hero {
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    padding: 48px 32px;
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+h3 {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+p {
+    color: #ffffff;
+    font-size: 8px;
+    line-height: 2;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 16px;
+    border-radius: 0;
+    border: 1px solid #ffffff;
+    font-size: 8px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 16px;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.btn-primary {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+/* Cards */
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.content-section {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    padding: 48px 32px;
+    margin-bottom: 48px;
+}
+
+.content-section h2 {
+    margin-top: 0;
+}
+
+.content-section p {
+    margin-bottom: 16px;
+}
+
+.card {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    padding: 24px;
+    background-color: #000000;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    border-color: #ffffff;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+.card p {
+    color: #ffffff;
+}
+
+/* Contact List */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 32px;
+}
+
+.contact-list li {
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-size: 8px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.contact-list a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid #ffffff;
+}
+
+.contact-list a:hover {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 8px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.social-icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.medal-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(100%);
+}
+
+.social-icon span {
+    display: none;
+    margin-left: 8px;
+}
+
+.social-icon:hover {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.social-icon.github:hover {
+    border-color: #ffffff;
+    color: #000000;
+}
+
+.social-icon.medal:hover {
+    border-color: #ffffff;
+    color: #000000;
+}
+
+.social-icon.discord:hover {
+    border-color: #ffffff;
+    color: #000000;
+}
+
+@media (min-width: 768px) {
+    .social-icon span {
+        display: inline;
+    }
+
+    .social-icon {
+        width: auto;
+        padding: 8px 12px;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #000000;
+    border-top: 1px solid #ffffff;
+    padding: 32px 16px;
+    text-align: center;
+    margin-top: 64px;
+}
+
+.footer p {
+    color: #ffffff;
+    font-size: 8px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Files Viewer */
+.files-page {
+    margin: 0 -16px;
+    padding: 0;
+}
+
+.file-browser {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    overflow: hidden;
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+}
+
+.file-header {
+    background-color: #000000;
+    border-bottom: 1px solid #ffffff;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-title {
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    font-weight: 400;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 8px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+}
+
+.file-list-container {
+    overflow-y: auto;
+    flex: 1;
+    border-right: 1px solid #ffffff;
+    min-width: 250px;
+    background-color: #000000;
+}
+
+.file-list {
+    padding: 8px 0;
+}
+
+.file-item {
+    padding: 12px 16px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.file-item:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-left-color: #ffffff;
+}
+
+.file-item.active {
+    background-color: #ffffff;
+    color: #000000;
+    border-left-color: #ffffff;
+}
+
+.file-content {
+    flex: 2;
+    overflow-y: auto;
+    padding: 24px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    line-height: 2;
+    color: #ffffff;
+}
+
+.file-content-hidden {
+    display: none;
+}
+
+.file-code {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    padding: 16px;
+    margin: 0;
+    color: #ffffff;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    line-height: 2;
+}
+
+.file-info {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 8px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+@media (max-width: 768px) {
+    .file-browser {
+        height: auto;
+        max-height: 80vh;
+    }
+
+    .file-list-container {
+        max-height: 300px;
+        border-right: none;
+        border-bottom: 1px solid #ffffff;
+    }
+}
+
+/* Edit Modal */
+.edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+#viewerLoginModal {
+    background-color: #000000 !important;
+}
+
+#viewerLoginModal[style*="display: none"] ~ body,
+#viewerLoginModal[style*="display: none"] ~ main,
+#viewerLoginModal[style*="display: none"] ~ .header,
+#viewerLoginModal[style*="display: none"] ~ .footer {
+    visibility: visible;
+}
+
+body.unauthenticated {
+    overflow: hidden;
+}
+
+body.unauthenticated > header,
+body.unauthenticated > main,
+body.unauthenticated > footer {
+    visibility: hidden;
+}
+.edit-modal-content {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.edit-modal-header {
+    border-bottom: 1px solid #ffffff;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-modal-header h3 {
+    color: #ffffff;
+    font-size: 12px;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.file-editor {
+    flex: 1;
+    padding: 16px;
+    background-color: #000000;
+    border: none;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    line-height: 2;
+    resize: none;
+    outline: none;
+}
+
+.file-editor::selection {
+    background-color: #ffffff;
+}
+
+.edit-modal-footer {
+    border-top: 1px solid #ffffff;
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.edit-file-btn {
+    padding: 6px 12px;
+    border-radius: 0;
+    border: 1px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 12px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.edit-file-btn:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}

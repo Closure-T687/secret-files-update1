@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enter a brief description of your website here for search engines.">
+    <title>Document Title</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <h1>//ZEROTH-ORDER-OIL-TANK</h1>
+            <div class="nav-links">
+                <a href="#files" onclick="showFilesPage(); return false;">Files</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <div id="viewerLoginModal" class="edit-modal" style="display: none; z-index: 2000;">
+        <div class="edit-modal-content" style="max-width: 400px;">
+            <div class="edit-modal-header">
+                <h3>Access Required</h3>
+            </div>
+            <div style="padding: 24px; text-align: center;">
+                <p style="color: #8b949e; margin-bottom: 24px; font-size: 14px;">Enter password to view this website</p>
+                <input type="password" id="viewerPasswordInput" class="file-editor" style="resize: vertical; height: auto; padding: 10px; margin-bottom: 16px;" placeholder="Enter password">
+                <div id="viewerLoginError" style="display: none; color: #f85149; font-size: 12px; margin-bottom: 16px; padding: 8px; background-color: rgba(248, 81, 73, 0.1); border-radius: 4px;">
+                    ✕ Incorrect password
+                </div>
+            </div>
+            <div class="edit-modal-footer">
+                <button class="btn btn-primary" onclick="authenticateViewer()" style="width: 100%;">Enter</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loginModal" class="edit-modal" style="display: none;">
+        <div class="edit-modal-content" style="max-width: 400px;">
+            <div class="edit-modal-header">
+                <h3>Owner Authentication</h3>
+                <button class="close-btn" onclick="closeLoginModal()">✕</button>
+            </div>
+            <div style="padding: 24px; text-align: center;">
+                <p style="color: #8b949e; margin-bottom: 16px;">Only the owner can edit files.</p>
+                <input type="password" id="passwordInput" class="file-editor" style="resize: vertical; height: auto; padding: 10px; margin-bottom: 16px;" placeholder="Enter owner password">
+                <div id="loginError" style="display: none; color: #f85149; font-size: 12px; margin-bottom: 16px; padding: 8px; background-color: rgba(248, 81, 73, 0.1); border-radius: 4px;">
+                    ✕ Incorrect password
+                </div>
+            </div>
+            <div class="edit-modal-footer">
+                <button class="btn btn-primary" onclick="authenticateOwner()">Login</button>
+                <button class="btn" onclick="closeLoginModal()" style="background-color: #21262d; margin-left: 8px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="edit-modal" style="display: none;">
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h3>Edit File</h3>
+                <button class="close-btn" onclick="closeEditModal()">✕</button>
+            </div>
+            <textarea id="fileEditor" class="file-editor" placeholder="Enter your file content here..."></textarea>
+            <div class="edit-modal-footer">
+                <button id="saveFileBtn" class="btn btn-primary">Save Changes</button>
+                <button class="btn" onclick="closeEditModal()" style="background-color: #21262d; margin-left: 8px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <section id="hero-section" class="hero">
+            <h2>Welcome to //ZEROTH-ORDER-OIL-TANK</h2>
+            <p>This is a Command-styled HTML5 document about me with a dark theme design.</p>
+        </section>
+
+        <section id="files-viewer" class="files-page" style="display: none;">
+            <div class="file-browser">
+                <div class="file-header">
+                    <span class="file-title">files/</span>
+                    <button class="close-btn" onclick="closeFilesPage()">✕</button>
+                </div>
+                <div class="file-list-container">
+                    <div class="file-list" id="fileList"></div>
+                </div>
+                <div id="fileContent" class="file-content"></div>
+            </div>
+        </section>
+
+        <section id="about" class="content-section" style="display: none;">
+            <button class="btn btn-back" onclick="goBack()" style="margin-bottom: 16px;">✕</button>
+            <h2>About</h2>
+            <p>Welcome to my project showcase. This is a modern, professional website built by me and inspired by command. All about me is here and only a few can access them.</p>
+        </section>
+
+        <section id="projects" class="content" style="display: none;">
+            <button class="btn btn-back" onclick="goBack()" style="margin-bottom: 16px; width: 100%;">✕</button>
+            <div class="card">
+                <h3>Project One</h3>
+                <p>Creating a game with further developement of other scripting languages but it is still in concept.</p>
+            </div>
+            <div class="card">
+                <h3>Project Two</h3>
+                <p>Create a battlegrounds game with the roblox studio but seems pretty difficult. Might have to use VS.CODE</p>
+            </div>
+            <div class="card">
+                <h3>Project Three</h3>
+                <p>Making a secret website with everything about me and everyone I know.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section" style="display: none;">
+            <button class="btn btn-back" onclick="goBack()" style="margin-bottom: 16px;">✕</button>
+            <h2>Contact</h2>
+            <p>Get in touch with me for collaborations and inquiries or simple friendship. You can reach me through:</p>
+            <ul class="contact-list">
+                <li>Email: larserick.a@gmail.com</li>
+                <li>GitHub: <a href="https://github.com/Closure-T687" target="_blank">Closure-T687</a></li>
+                <li>Medal: <a href="https://medal.tv/u/LEADERONE" target="_blank">LEADERONE</a></li>
+                <li>Discord: <a href="https://discord.com/users/944670156171386992" target="_blank">Closure</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://github.com/Closure-T687" class="social-icon github" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://medal.tv/u/LEADERONE" class="social-icon medal" target="_blank" title="Medal">
+                    <img src="https://medal.tv/favicon.ico" alt="Medal.tv" class="medal-icon">
+                    <span>Medal</span>
+                </a>
+                <a href="https://discord.com/users/944670156171386992" class="social-icon discord" target="_blank" title="Discord">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 0000 //ZEROTH-ORDER-OIL-TANK. VS CODE.</p>
+    </footer>
+
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>
