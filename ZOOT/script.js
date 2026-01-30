@@ -13,6 +13,9 @@ const OWNER_PASSWORD = 'T9!qZ^L4@E8v#H2$R%NwC7xK&*S'; // Password to EDIT files
 let isViewerAuthenticated = false;
 let isOwnerAuthenticated = false;
 
+// Command input tracking
+let commandInput = '';
+
 const filesContent = {
     'file1': `Welcome to File 1
 
@@ -145,17 +148,50 @@ Skärs I två punkter x = 1 och x = -1
 Två lösningar möjliga.
 X = 1 och X = -1
 `,
-    'file5': `File 5 - Add your content here`,
-    'file6': `File 6 - Add your content here`,
+    'file5': `File 5 - Struggles? It is always fine to ask for help or use assistance from others.
+    no matter how small it may be - I am sure someone will be willing to help you out!
+    
+    Speaking of struggles, I personally find math to be quite challenging at times.
+    But with practice and patience, I believe anyone can improve their skills.
+
+    Same with programming - it can be tough to grasp at first, but with dedication, it becomes easier.
+    I feel that way about many things in life.  It is okay to struggle, as long as you keep pushing forward.
+
+    But never do something that harms yourself or others.  Always prioritize safety and well-being.
+
+    Remember, everyone has their own strengths and weaknesses. I might share more about my struggles to help others feel less alone.
+    
+    Am I perfect? No, of course not. But I strive to be the best version of myself every day.
+    And I encourage you to do the same!`,
+    'file6': `File 6 - Honestly yesterday was a rough day for me and my dear friend Lillie. I dislike the fact her boyfriend is  so hypocritical and just dense. Speaking of dense, I feel like I am talking to a wall 
+    that only knows how to say stupid stuff or just be rude. Consider that very same wall cried to me about the very same stuff he does. No wonder he blocked me lol.`,
     'file7': `File 7 - Ren files, A retarded simp that is very much a 10/10 in appearance.`,
-    'file8': `File 8 - Add your content here`,
-    'file9': `File 9 - Add your content here`,
-    'file10': `File 10 - Add your content here`,
-    'file11': `File 11 - Add your content here`,
-    'file12': `File 12 - A kind british woman 
+    'file8': `File 8 - Where to start? Well I can talk about my special friend Saluzo. A guy who is a perfect guy to simp for. Handsome, smart, funny, talented and overall a great person to be around. I am glad to have met him and 
+    I hope we can continue to be friends for a long time to come. He has some of his own struggles but he is a strong person who can overcome anything. Keep being awesome Saluzo!`,
+    'file9': `File 9 - As much as I love to anger my friend Saluzo, I truly admire him and wish him the best.
+    I love making him feel the love he has been due for way too long. I hope he sees me as someone to trust.`,
+    'file10': `File 10 - Ahh, Hannes - my most retarded and dumb friend who has some of the worst takes I have ever heard.
+    He asks all the time that we are apparently best friends which we are but he is a bit too good at annoying me. I love him to death tho, a great guy who is always there when you need him. Just dont expect any good takes from him lol.`,
+    'file11': `File 11 - I have way too many friends named Oliver. I will be honest they are both the same person, same hobbies, same music taste, same humor. It is honestly scary how similar they are.
+    But I love them both dearly, they are great people to be around and always make me laugh. I hope we can continue to be friends for a long time to come.`,
+    'file12': `File 12 -Lillie A kind british woman 
     who loves to insult and ragebait but is also very nice and cool
-    but she is clearly a bit too slow in the head sometimes.`,
-    'file13': `File 13 - Add your content here`,
+    but she is clearly a bit too slow in the head sometimes. I like her honestly, funny and all around a good person to be around. But can be a bit much at times.
+    That being when she tries to anger me of course- Who am I to complain tho? LELELEL`,
+    'file13': `File 13 - My head feels empty so I will just write random stuff here.
+    The sky is blue, the grass is green.
+    I like to eat ice cream on a sunny day.
+
+    Programming is fun when you understand it.
+    Cats are cute and dogs are loyal.
+
+    Life is a journey full of ups and downs.
+    Music can lift your spirits and make you dance.
+    Books can take you to magical worlds and teach you new things. But I hate reading books and dancing.
+
+    Friends are important for support and companionship.
+    Family is the foundation of love and belonging.
+    But I am a huge loner and prefer to be alone most of the time.`,
     'file14': `File 14 - Add your content here`,
     'file15': `File 15 - Add your content here`,
     'file16': `File 16 - Add your content here`,
@@ -209,9 +245,9 @@ X = 1 och X = -1
     'file64': `File 64 - Add your content here`,
     'file65': `File 65 - Add your content here`,
     'file66': `File 66 - Add your content here`,
-    'file67': `File 67 - Add your content here`,
+    'file67': `File 67 - Hannes is a dumb fuck. Why am I not surprised he picked this file?`,
     'file68': `File 68 - Add your content here`,
-    'file69': `File 69 - Add your content here`,
+    'file69': `File 69 - I am actually a gooner, deal with it.`,
     'file70': `File 70 - Add your content here`,
     'file71': `File 71 - Add your content here`,
     'file72': `File 72 - Add your content here`,
@@ -265,12 +301,12 @@ function initializeFiles() {
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
         fileItem.textContent = `📄 file${i}.txt`;
-        fileItem.onclick = () => showFile(`file${i}`);
+        fileItem.onclick = (e) => showFile(`file${i}`, e);
         fileList.appendChild(fileItem);
     }
     
     
-    showFile('file1');
+    showFile('file1', null);
 }
 
 
@@ -300,19 +336,18 @@ function goBack() {
 }
 
 
-function showFile(fileKey) {
+function showFile(fileKey, evt) {
     const fileContent = document.getElementById('fileContent');
     const file = files[fileKey];
     
     if (file) {
-        
         document.querySelectorAll('.file-item').forEach(item => {
             item.classList.remove('active');
         });
         
         // Set active class on the clicked element if event exists
-        if (event && event.target) {
-            event.target.classList.add('active');
+        if (evt && evt.target) {
+            evt.target.classList.add('active');
         } else {
             // If called programmatically, find and set active class by file key
             document.querySelectorAll('.file-item').forEach(item => {
@@ -503,27 +538,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Add flash animation to all buttons on click
-    const buttons = document.querySelectorAll('.btn, .edit-file-btn');
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
+    // Add flash animation to all buttons on click
+    document.addEventListener('click', function(e) {
+        const target = e.target;
+        if (target && target.classList && (target.classList.contains('btn') || target.classList.contains('edit-file-btn') || target.classList.contains('btn-back'))) {
+            // Remove flash class first to reset animation
+            target.classList.remove('flash');
+            // Trigger reflow to restart animation
+            void target.offsetWidth;
             // Add flash class
-            this.classList.add('flash');
+            target.classList.add('flash');
             // Remove the flash class after animation completes
             setTimeout(() => {
-                this.classList.remove('flash');
-            }, 300);
-        });
-    });
-    
-    // Also add flash animation to dynamically created buttons (modal buttons)
-    document.addEventListener('click', function(e) {
-        if (e.target.classList && (e.target.classList.contains('btn') || e.target.classList.contains('edit-file-btn'))) {
-            if (!e.target.classList.contains('flash')) {
-                e.target.classList.add('flash');
-                setTimeout(() => {
-                    e.target.classList.remove('flash');
-                }, 300);
-            }
+                target.classList.remove('flash');
+            }, 350);
         }
     }, true);
 });
@@ -539,3 +567,185 @@ function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
+
+// Handle command input
+function handleCommandInput(key) {
+    if (key === 'Enter') {
+        // This will be handled by shift+enter in the keydown event
+        return;
+    }
+    
+    // Add character to command input
+    if (key.length === 1) {
+        commandInput += key;
+        updateCommandDisplay();
+    } else if (key === 'Backspace') {
+        commandInput = commandInput.slice(0, -1);
+        updateCommandDisplay();
+    }
+}
+
+function updateCommandDisplay() {
+    const commandLog = document.getElementById('commandLog');
+    if (commandLog) {
+        commandLog.textContent = '//WRITE COMMAND: ' + commandInput;
+    }
+}
+
+function submitCommand() {
+    const cmd = commandInput.trim().toUpperCase();
+    if (cmd === 'SHOWSCRTBTTN1' || cmd === 'SCRTBTTN1/SHORTCUT') {
+        showSecretButton();
+    }
+    if (cmd === 'CMND/JSC2/100' || cmd === 'SCRTJSC/SHORTCUT') {
+        triggerJumpscare();
+    }
+    commandInput = '';
+    updateCommandDisplay();
+}
+
+// Show the secret button when sequence is complete
+function showSecretButton() {
+    const secretBtn = document.getElementById('secretNavButton');
+    if (secretBtn) {
+        secretBtn.style.display = 'inline-block';
+        secretBtn.classList.add('flash');
+    }
+    const commandLog = document.getElementById('commandLog');
+    if (commandLog) {
+        commandLog.textContent = 'Command accepted';
+    }
+    console.log('Secret sequence unlocked!');
+}
+
+// Show random cat images with 1/100 chance of a jumpscare GIF
+function showCatImages() {
+    const modal = document.getElementById('catImageModal');
+    const container = document.getElementById('catImagesContainer');
+
+    // Check for 1 in 100 chance of jumpscare
+    const scareChance = Math.random();
+    if (scareChance < 0.01) {
+        // Play loud screech and display the provided jumpscare GIF immediately
+        try { playScarySoundEffect(); } catch (e) { console.warn('Audio failed:', e); }
+        container.innerHTML = `<img src="https://cdn.discordapp.com/attachments/1449824986368966736/1459143525840191628/togif.gif" alt="jumpscare" style="width:100%; height:100%; object-fit:contain; display:block;">`;
+        modal.style.display = 'block';
+        return;
+    }
+
+    container.innerHTML = '';
+
+    // Fetch random cat images
+    fetch('https://api.thecatapi.com/v1/images/search?limit=6')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(cat => {
+                const img = document.createElement('img');
+                img.src = cat.url;
+                img.alt = 'Random cat';
+                img.className = 'cat-image';
+                container.appendChild(img);
+            });
+        })
+        .catch(error => {
+            // Fallback if API fails
+            container.innerHTML = '<p style="color: #ffffff; text-align: center;">😺 Meow! Cat API unavailable, but here\'s a cute cat emoji!</p>';
+        });
+
+    modal.style.display = 'block';
+}
+
+// Close cat images modal
+function closeCatImages() {
+    const modal = document.getElementById('catImageModal');
+    modal.style.display = 'none';
+}
+
+// Trigger jumpscare and GIF instantly via command
+function triggerJumpscare() {
+    const modal = document.getElementById('catImageModal');
+    const container = document.getElementById('catImagesContainer');
+    
+    if (!modal || !container) {
+        console.error('Modal or container not found');
+        return;
+    }
+    
+    // Clear any previous content
+    container.innerHTML = '';
+    
+    // Play scary sound and display jumpscare GIF
+    try { playScarySoundEffect(); } catch (e) { console.warn('Audio failed:', e); }
+    
+    // Create and append the image
+    const img = document.createElement('img');
+    img.src = 'images/jumpscare.png';
+    img.alt = 'jumpscare';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'contain';
+    img.style.display = 'block';
+    container.appendChild(img);
+    
+    modal.style.display = 'block';
+    
+    const commandLog = document.getElementById('commandLog');
+    if (commandLog) {
+        commandLog.textContent = '⚠️ JUMPSCARE ACTIVATED ⚠️';
+    }
+    console.log('Jumpscare triggered!');
+}
+
+// Play scary sound effect (1/1000 chance)
+function playScarySoundEffect() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const now = audioContext.currentTime;
+    
+    // Create a loud, scary noise
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+    
+    // Create a jarring sound effect
+    gain.gain.setValueAtTime(1, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+    
+    osc.frequency.setValueAtTime(600, now);
+    osc.frequency.exponentialRampToValueAtTime(200, now + 0.5);
+    
+    osc.start(now);
+    osc.stop(now + 0.5);
+}
+
+// Initialize keyboard listener for command input
+document.addEventListener('keydown', function(event) {
+    // Only listen for commands in files-viewer
+    const filesViewer = document.getElementById('files-viewer');
+    if (!filesViewer || filesViewer.style.display === 'none') {
+        return;
+    }
+    
+    // Submit command on Enter (Shift+Enter also supported)
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        submitCommand();
+        return;
+    }
+    
+    // Handle backspace
+    if (event.key === 'Backspace') {
+        event.preventDefault();
+        commandInput = commandInput.slice(0, -1);
+        updateCommandDisplay();
+        return;
+    }
+    
+    // Handle regular character input (alphanumeric and symbols)
+    if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        event.preventDefault();
+        commandInput += event.key;
+        updateCommandDisplay();
+    }
+});
